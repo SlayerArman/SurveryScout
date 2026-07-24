@@ -54,6 +54,13 @@ def main():
         f"Operating System: {operating_system} {os_version}"
     )
 
+    processor = platform.processor()
+
+    create_info_label(
+        info_frame,
+        f"Processor: {processor}"
+    )
+
     root.mainloop()
 
 if __name__ == "__main__":
