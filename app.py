@@ -1,5 +1,6 @@
 import tkinter as tk
 import platform
+import psutil
 
 def create_info_label(parent, text):
     label = tk.Label(
@@ -59,6 +60,14 @@ def main():
     create_info_label(
         info_frame,
         f"Processor: {processor}"
+    )
+
+    memory = psutil.virtual_memory()
+    total_ram = memory.total / (1024 ** 3)
+
+    create_info_label(
+        info_frame,
+        f"Installed Memory: {total_ram: .2f} GB"
     )
 
     root.mainloop()
