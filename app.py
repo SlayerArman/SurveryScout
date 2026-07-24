@@ -16,7 +16,11 @@ def create_info_label(parent, text):
         anchor="w"
     )
 
-    label.pack(fill="x", pady=4)
+    label.pack(
+        fill="x",
+        pady=6,
+        anchor="w"
+    )
 
     return label
 
@@ -64,8 +68,16 @@ def main():
 
     subtitle.pack()
 
+    seperator = tk.Frame(
+        root,
+        height=2,
+        bg="#d9d9d9"
+    )
+
+    seperator.pack(fill="x", padx=30, pady=(15, 10))
+
     info_frame = tk.Frame(root)
-    info_frame.pack(pady=25)
+    info_frame.pack(fill="x", padx=30, pady=25)
 
     computer_name = get_computer_name()
 
@@ -110,8 +122,11 @@ def main():
         "storage": storage_label,
     }
 
+    button_frame =tk.Frame(root)
+    button_frame.pack(fill="x", pady=15)
+
     refresh_button = tk.Button(
-        root,
+        button_frame,
         text="Refresh",
         width=15,
         command=lambda: refresh_information(labels)
