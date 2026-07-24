@@ -20,6 +20,27 @@ def create_info_label(parent, text):
 
     return label
 
+def refresh_information(labels):
+    labels["computer"].config(
+        text=f"Computer Name: {get_computer_name()}"
+    )
+
+    labels["os"].config(
+        text=f"Operating System: {get_operating_system()}"
+    )
+
+    labels["processor"].config(
+        text=f"Processor: {get_processor()}"
+    )
+
+    labels["memory"].config(
+        text=f"Installed Memory: {get_memory()}"
+    )
+
+    labels["storage"].config(
+        text=f"Storage: {get_storage()}"
+    )
+
 def main():
     root = tk.Tk()
 
@@ -48,38 +69,55 @@ def main():
 
     computer_name = get_computer_name()
 
-    create_info_label(
+    computer_label = create_info_label(
         info_frame,
         f"Computer Name: {computer_name}"
     )
 
     operating_system = get_operating_system()
 
-    create_info_label(
+    os_label = create_info_label(
         info_frame,
         f"Operating System: {operating_system}"
     )
 
     processor = get_processor()
 
-    create_info_label(
+    processor_label = create_info_label(
         info_frame,
         f"Processor: {processor}"
     )
 
     memory = get_memory()
 
-    create_info_label(
+    memory_label = create_info_label(
         info_frame,
         f"Installed Memory: {memory}"
     )
 
     storage = get_storage()
 
-    create_info_label(
+    storage_label = create_info_label(
         info_frame,
         f"Storage: {storage}"
     )
+
+    labels = {
+        "computer": computer_label,
+        "os": os_label,
+        "processor": processor_label,
+        "memory": memory_label,
+        "storage": storage_label,
+    }
+
+    refresh_button = tk.Button(
+        root,
+        text="Refresh",
+        width=15,
+        command=lambda: refresh_information(labels)
+    )
+
+    refresh_button.pack(pady=20)
 
     root.mainloop()
 
