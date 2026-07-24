@@ -24,10 +24,13 @@ def main():
 
     subtitle.pack()
 
+    info_frame = tk.Frame(root)
+    info_frame.pack(pady=25)
+
     computer_name = platform.node()
 
     computer_label = tk.label(
-        root,
+        info_frame,
         text=f"Computer Name: {computer_name}",
         font=("Segoe UI", 11)
     )
