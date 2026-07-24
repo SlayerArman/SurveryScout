@@ -1,4 +1,5 @@
 import tkinter as tk
+import platform
 
 def main():
     root = tk.Tk()
@@ -22,6 +23,16 @@ def main():
     )
 
     subtitle.pack()
+
+    computer_name = platform.node()
+
+    computer_label = tk.label(
+        root,
+        text=f"Computer Name: {computer_name}",
+        font=("Segoe UI", 11)
+    )
+
+    computer_label.pack(pady=20)
 
     root.mainloop()
 
