@@ -1,6 +1,18 @@
 import tkinter as tk
 import platform
 
+def create_info_label(parent, text):
+    label = tk.Label(
+        parent,
+        text=text,
+        font=("Segoe UI", 11),
+        anchor="w"
+    )
+
+    label.pack(fill="x", pady=4)
+
+    return label
+
 def main():
     root = tk.Tk()
 
@@ -29,24 +41,18 @@ def main():
 
     computer_name = platform.node()
 
-    computer_label = tk.Label(
+    create_info_label(
         info_frame,
-        text=f"Computer Name: {computer_name}",
-        font=("Segoe UI", 11)
+        f"Computer Name: {computer_name}"
     )
-
-    computer_label.pack(pady=20)
 
     operating_system = platform.system()
     os_version = platform.release()
 
-    os_label = tk.Label(
+    create_info_label(
         info_frame,
-        text=f"Operating System: {operating_system} {os_version}",
-        font=("Segoe UI", 11)
+        f"Operating System: {operating_system} {os_version}"
     )
-
-    os_label.pack(pady=5)
 
     root.mainloop()
 
