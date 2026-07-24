@@ -29,13 +29,24 @@ def main():
 
     computer_name = platform.node()
 
-    computer_label = tk.label(
+    computer_label = tk.Label(
         info_frame,
         text=f"Computer Name: {computer_name}",
         font=("Segoe UI", 11)
     )
 
     computer_label.pack(pady=20)
+
+    operating_system = platform.system()
+    os_version = platform.release()
+
+    os_label = tk.Label(
+        info_frame,
+        text=f"Operating System: {operating_system} {os_version}",
+        font=("Segoe UI", 11)
+    )
+
+    os_label.pack(pady=5)
 
     root.mainloop()
 
