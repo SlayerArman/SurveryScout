@@ -1,6 +1,7 @@
 import tkinter as tk
 import platform
 import psutil
+import os
 
 def create_info_label(parent, text):
     label = tk.Label(
@@ -68,6 +69,16 @@ def main():
     create_info_label(
         info_frame,
         f"Installed Memory: {total_ram: .2f} GB"
+    )
+
+    disk = psutil.disk_usage(os.getenv("SystemDrive", "C:"))
+
+    used_space = disk.used / (1024 ** 3)
+    total_space = disk.total / (1024 ** 3)
+
+    create_info_label(
+        info_frame,
+        f"Storage: {used_space:.1f} GB used of {total_space:.1f} GB"
     )
 
     root.mainloop()
