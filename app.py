@@ -1,4 +1,7 @@
 import tkinter as tk
+from tkinter import messagebox
+
+from scout.report import save_report
 
 from scout.system import(
     get_computer_name,
@@ -43,6 +46,22 @@ def refresh_information(labels):
 
     labels["storage"].config(
         text=f"Storage: {get_storage()}"
+    )
+
+def export_report():
+    report = [
+        f"Computer Name: {get_computer_name()}",
+        f"Operating System: {get_operating_system()}",
+        f"Processor: {get_processor()}",
+        f"Installed Memory: {get_memory()}",
+        f"Storage: {get_storage()}",
+    ]
+
+    filename = save_report(report)
+
+    messagebox.showinfo(
+        "Report Saved",
+        f"System report saved to:\n\n{filename}"
     )
 
 def main():
@@ -125,6 +144,15 @@ def main():
     button_frame =tk.Frame(root)
     button_frame.pack(fill="x", pady=15)
 
+    export_button =tk.Button(
+        button_frame,
+        text="Export Report",
+        width=15,
+        command=export_report
+    )
+
+    export_button.pack(side="left", padx=10)
+
     refresh_button = tk.Button(
         button_frame,
         text="Refresh",
@@ -132,7 +160,7 @@ def main():
         command=lambda: refresh_information(labels)
     )
 
-    refresh_button.pack(pady=20)
+    refresh_button.pack(side="left", padx=10)
 
     root.mainloop()
 
