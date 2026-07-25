@@ -30,7 +30,7 @@ def create_info_label(parent, text):
 
     return label
 
-def refresh_information(labels):
+def refresh_information(labels, status_label):
     labels["computer"].config(
         text=f"Computer Name: {get_computer_name()}"
     )
@@ -64,19 +64,28 @@ def refresh_information(labels):
         text=f"Storage: {get_storage()}"
     )
 
-def export_report():
+    status_label.config(text="Information refreshed")
+
+def export_report(status_label):
     report = [
         f"Computer Name: {get_computer_name()}",
-        f"Computer User: {get_current_user()}"
+        f"Current User: {get_current_user()}",
         f"Operating System: {get_operating_system()}",
         f"Python Version: {get_python_version()}",
         f"Processor: {get_processor()}",
-        f"CPU Usage: {get_cpu_usage}",
+        f"CPU Usage: {get_cpu_usage()}",
         f"Installed Memory: {get_memory()}",
         f"Storage: {get_storage()}",
     ]
 
     filename = save_report(report)
+
+    messagebox.showinfo(
+        "Report Saved",
+        f"System report saved to:\n\n{filename}"
+    )
+
+    status_label.config(text="Report exported")
 
 def copy_report(root):
     report = [
@@ -99,7 +108,7 @@ def copy_report(root):
         "System information has been copied to the clipboard"
     )
 
-def show_about():
+def show_about(status_label):
     messagebox.showinfo(
         "About Operation Scout",
         (
@@ -110,10 +119,7 @@ def show_about():
         )
     )
 
-    messagebox.showinfo(
-        "Report Saved",
-        f"System report saved to:\n\n{filename}"
-    )
+    status_label.config(text="About opened")
 
 def main():
     root = tk.Tk()
@@ -216,6 +222,16 @@ def main():
         "storage": storage_label,
     }
 
+    status_label = tk.Label(
+        root,
+        text="Ready",
+        anchor="w",            
+        relief="sunken",
+        padx=8
+     )
+    
+    status_label.pack(fill="x", side="bottom")
+
     button_frame = tk.Frame(root)
     button_frame.pack(pady=15)
 
@@ -232,7 +248,7 @@ def main():
         button_frame,
         text="Export Report",
         width=15,
-        command=export_report
+        command=lambda: export_report(status_label)
     )
 
     export_button.pack(side="left", padx=10)
@@ -241,7 +257,7 @@ def main():
         button_frame,
         text="Refresh",
         width=15,
-        command=lambda: refresh_information(labels)
+        command=lambda: refresh_information(labels, status_label)
     )
 
     refresh_button.pack(side="left", padx=10)
@@ -259,7 +275,7 @@ def main():
 
     file_menu.add_command(
         label="Export Report",
-        command=export_report
+        command=lambda: export_report(status_label)
     )
 
     file_menu.add_separator()
