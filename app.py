@@ -78,6 +78,27 @@ def export_report():
 
     filename = save_report(report)
 
+def copy_report(root):
+    report = [
+        f"Computer Name: {get_computer_name()}",
+        f"Current User: {get_current_user()}",
+        f"Operating System: {get_operating_system()}",
+        f"Python Version: {get_python_version()}",
+        f"Processor: {get_processor()}",
+        f"CPU Usage: {get_cpu_usage()}",
+        f"Installed Memory: {get_memory()}",
+        f"Storage: {get_storage()}",
+    ]
+
+    root.clipboard_clear()
+    root.clipboard_append("\n".join(report))
+    root.update()
+
+    messagebox.showinfo(
+        "Copied",
+        "System information has been copied to the clipboard"
+    )
+
 def show_about():
     messagebox.showinfo(
         "About Operation Scout",
@@ -198,6 +219,15 @@ def main():
     button_frame = tk.Frame(root)
     button_frame.pack(pady=15)
 
+    copy_button = tk.Button(
+        button_frame,
+        text="Copy Report",
+        width=15,
+        command=lambda: copy_report(root)
+    )
+
+    copy_button.pack(side="left", padx=10)
+
     export_button = tk.Button(
         button_frame,
         text="Export Report",
@@ -221,6 +251,11 @@ def main():
 
     file_menu = tk.Menu(menu_bar, tearoff=False)
     menu_bar.add_cascade(label="File", menu=file_menu)
+
+    file_menu.add_command(
+        label="Copy Report",
+        command=lambda: copy_report(root)
+    )
 
     file_menu.add_command(
         label="Export Report",
