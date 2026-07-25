@@ -2,6 +2,7 @@ import os
 import platform
 import psutil
 import getpass
+import sys
 
 def get_computer_name():
     return platform.node()
@@ -26,3 +27,6 @@ def get_storage():
 
 def get_current_user():
     return getpass.getuser()
+
+def get_python_version():
+    return sys.version.split()[0]
