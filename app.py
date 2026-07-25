@@ -66,8 +66,8 @@ def refresh_information(labels, status_label):
 
     status_label.config(text="Information refreshed")
 
-def export_report(status_label):
-    report = [
+def build_report():
+    return [
         f"Computer Name: {get_computer_name()}",
         f"Current User: {get_current_user()}",
         f"Operating System: {get_operating_system()}",
@@ -77,6 +77,9 @@ def export_report(status_label):
         f"Installed Memory: {get_memory()}",
         f"Storage: {get_storage()}",
     ]
+
+def export_report(status_label):
+    report = build_report()
 
     filename = save_report(report)
 
@@ -88,16 +91,7 @@ def export_report(status_label):
     status_label.config(text="Report exported")
 
 def copy_report(root):
-    report = [
-        f"Computer Name: {get_computer_name()}",
-        f"Current User: {get_current_user()}",
-        f"Operating System: {get_operating_system()}",
-        f"Python Version: {get_python_version()}",
-        f"Processor: {get_processor()}",
-        f"CPU Usage: {get_cpu_usage()}",
-        f"Installed Memory: {get_memory()}",
-        f"Storage: {get_storage()}",
-    ]
+    report = build_report()
 
     root.clipboard_clear()
     root.clipboard_append("\n".join(report))
