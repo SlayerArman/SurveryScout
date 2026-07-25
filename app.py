@@ -72,6 +72,17 @@ def export_report():
 
     filename = save_report(report)
 
+def show_about():
+    messagebox.showinfo(
+        "About Operation Scout",
+        (
+            "Operation Scout\n"
+            "Version 1.0\n\n"
+            "A beginner-friendly desktop application for"
+            "viewing basic system information"
+        )
+    )
+
     messagebox.showinfo(
         "Report Saved",
         f"System report saved to:\n\n{filename}"
@@ -208,6 +219,14 @@ def main():
         label="Exit",
         accelerator="Ctrl+Q",
         command=root.destroy
+    )
+
+    help_menu = tk.Menu(menu_bar, tearoff=False)
+    menu_bar.add_cascade(label="Help", menu=help_menu)
+
+    help_menu.add_command(
+        label="About",
+        command=show_about
     )
 
     root.bind("<Control-q>", lambda event: root.destroy())
