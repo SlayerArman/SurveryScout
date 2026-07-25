@@ -9,6 +9,7 @@ from scout.system import (
     get_operating_system,
     get_processor,
     get_storage,
+    get_current_user,
 )
 
 def create_info_label(parent, text):
@@ -32,6 +33,11 @@ def refresh_information(labels):
         text=f"Computer Name: {get_computer_name()}"
     )
 
+    labels["user"].config(
+        text=f"Current User: {get_current_user()}"
+    )
+    
+
     labels["os"].config(
         text=f"Operating System: {get_operating_system()}"
     )
@@ -51,6 +57,7 @@ def refresh_information(labels):
 def export_report():
     report = [
         f"Computer Name: {get_computer_name()}",
+        f"Computer User: {get_current_user()}"
         f"Operating System: {get_operating_system()}",
         f"Processor: {get_processor()}",
         f"Installed Memory: {get_memory()}",
@@ -105,6 +112,13 @@ def main():
         f"Computer Name: {computer_name}"
     )
 
+    current_user = get_current_user()
+
+    user_label = create_info_label(
+        info_frame,
+        f"Current User: {current_user}"
+    )
+
     operating_system = get_operating_system()
 
     os_label = create_info_label(
@@ -135,6 +149,7 @@ def main():
 
     labels = {
         "computer": computer_label,
+        "user": user_label,
         "os": os_label,
         "processor": processor_label,
         "memory": memory_label,

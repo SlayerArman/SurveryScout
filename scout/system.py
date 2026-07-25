@@ -1,6 +1,7 @@
 import os
 import platform
 import psutil
+import getpass
 
 def get_computer_name():
     return platform.node()
@@ -22,3 +23,6 @@ def get_storage():
     total = disk.total / (1024 ** 3)
 
     return f"{used:.1f} GB used of {total:.1f} GB"
+
+def get_current_user():
+    return getpass.getuser()
