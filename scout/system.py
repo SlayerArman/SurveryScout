@@ -30,3 +30,6 @@ def get_current_user():
 
 def get_python_version():
     return sys.version.split()[0]
+
+def get_cpu_usage():
+    return f"{psutil.cpu_percent(interval=0.5)}%"

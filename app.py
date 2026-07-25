@@ -11,6 +11,7 @@ from scout.system import (
     get_storage,
     get_current_user,
     get_python_version,
+    get_cpu_usage,
 )
 
 def create_info_label(parent, text):
@@ -51,6 +52,10 @@ def refresh_information(labels):
         text=f"Processor: {get_processor()}"
     )
 
+    labels["cpu"].config(
+        text=f"CPU Usage: {get_cpu_usage()}"
+    )
+
     labels["memory"].config(
         text=f"Installed Memory: {get_memory()}"
     )
@@ -66,6 +71,7 @@ def export_report():
         f"Operating System: {get_operating_system()}",
         f"Python Version: {get_python_version()}",
         f"Processor: {get_processor()}",
+        f"CPU Usage: {get_cpu_usage}",
         f"Installed Memory: {get_memory()}",
         f"Storage: {get_storage()}",
     ]
@@ -157,6 +163,13 @@ def main():
         f"Processor: {processor}"
     )
 
+    cpu_usage = get_cpu_usage()
+
+    cpu_label = create_info_label(
+        info_frame,
+        f"CPU Usage: {cpu_usage}"
+    )
+
     memory = get_memory()
 
     memory_label = create_info_label(
@@ -177,6 +190,7 @@ def main():
         "os": os_label,
         "python": python_label,
         "processor": processor_label,
+        "cpu": cpu_label,
         "memory": memory_label,
         "storage": storage_label,
     }
