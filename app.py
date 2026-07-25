@@ -3,7 +3,7 @@ from tkinter import messagebox
 
 from scout.report import save_report
 
-from scout.system import(
+from scout.system import (
     get_computer_name,
     get_memory,
     get_operating_system,
@@ -87,13 +87,13 @@ def main():
 
     subtitle.pack()
 
-    seperator = tk.Frame(
+    separator = tk.Frame(
         root,
         height=2,
         bg="#d9d9d9"
     )
 
-    seperator.pack(fill="x", padx=30, pady=(15, 10))
+    separator.pack(fill="x", padx=30, pady=(15, 10))
 
     info_frame = tk.Frame(root)
     info_frame.pack(fill="x", padx=30, pady=25)
@@ -141,10 +141,10 @@ def main():
         "storage": storage_label,
     }
 
-    button_frame =tk.Frame(root)
-    button_frame.pack(fill="x", pady=15)
+    button_frame = tk.Frame(root)
+    button_frame.pack(pady=15)
 
-    export_button =tk.Button(
+    export_button = tk.Button(
         button_frame,
         text="Export Report",
         width=15,
@@ -161,6 +161,27 @@ def main():
     )
 
     refresh_button.pack(side="left", padx=10)
+
+    menu_bar = tk.Menu(root)
+    root.config(menu=menu_bar) 
+
+    file_menu = tk.Menu(menu_bar, tearoff=False)
+    menu_bar.add_cascade(label="File", menu=file_menu)
+
+    file_menu.add_command(
+        label="Export Report",
+        command=export_report
+    )
+
+    file_menu.add_separator()
+
+    file_menu.add_command(
+        label="Exit",
+        accelerator="Ctrl+Q",
+        command=root.destroy
+    )
+
+    root.bind("<Control-q>", lambda event: root.destroy())
 
     root.mainloop()
 
