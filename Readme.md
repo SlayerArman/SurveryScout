@@ -2,6 +2,14 @@
 
 Operation Scout is a simple desktop application I built using Python and Tkinter. It displays basic information about the current computer and allows the information to be copied to the clipboard or exported as a text report.
 
+## Download
+
+If you don't want to install Python or the project dependencies, you can download the standalone Windows executable from the **Releases** page.
+
+1. Go to the **Releases** section of this repository.
+2. Download **OperationScout.exe** from the latest release.
+3. Double-click the executable to start the application.
+
 ## Features
 
 - View computer name
