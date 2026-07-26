@@ -117,6 +117,10 @@ def show_about(status_label):
 
 def main():
     root = tk.Tk()
+    try:
+        root.iconbitmap("assets/icon.png")
+    except Exception:
+        pass
 
     root.title("Operation Scout")
     root.geometry("700x500")
