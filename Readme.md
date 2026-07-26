@@ -45,7 +45,7 @@ OperationScout/
 ├── requirements.txt
 ├── reports/
 ├── assets/
-│   ├── icon.ico
+│   ├── icon.png
 │   └── screenshot.png
 └── scout/
     ├── report.py

@@ -64,7 +64,7 @@ def refresh_information(labels, status_label):
         text=f"Storage: {get_storage()}"
     )
 
-    status_label.config(text="Information refreshed")
+    status_label.config(text="Information refreshed successfully")
 
 def build_report():
     return [
@@ -80,22 +80,38 @@ def build_report():
 
 def export_report(status_label):
     report = build_report()
+    try:
+        filename = save_report(report)
 
-    filename = save_report(report)
+        messagebox.showinfo(
+            "Report Saved",
+            f"System report saved to:\n\n{filename}"
+        )
 
-    messagebox.showinfo(
-        "Report Saved",
-        f"System report saved to:\n\n{filename}"
-    )
+        status_label.config(
+            text="Report exported successfully"
+        )
 
-    status_label.config(text="Report exported")
+    except Exception as error:
+        messagebox.showerror(
+            "Export Failed",
+            str(error)
+        )
 
-def copy_report(root):
+        status_label.config(
+            text="Export failed"
+        )
+
+def copy_report(root, status_label):
     report = build_report()
 
     root.clipboard_clear()
     root.clipboard_append("\n".join(report))
     root.update()
+
+    status_label.config(
+        text="System information copied to clipboard"
+    )
 
     messagebox.showinfo(
         "Copied",
@@ -108,8 +124,8 @@ def show_about(status_label):
         (
             "Operation Scout\n"
             "Version 1.0\n\n"
-            "A beginner-friendly desktop application for"
-            "viewing basic system information"
+            "A beginner-friendly desktop application for "
+            "viewing basic system information."
         )
     )
 
@@ -118,7 +134,8 @@ def show_about(status_label):
 def main():
     root = tk.Tk()
     try:
-        root.iconbitmap("assets/icon.png")
+        icon = tk.PhotoImage(file="assets/icon.png")
+        root.iconphoto(True, icon)
     except Exception:
         pass
 
@@ -237,7 +254,7 @@ def main():
         button_frame,
         text="Copy Report",
         width=15,
-        command=lambda: copy_report(root)
+        command=lambda: copy_report(root, status_label)
     )
 
     copy_button.pack(side="left", padx=10)
@@ -268,7 +285,7 @@ def main():
 
     file_menu.add_command(
         label="Copy Report",
-        command=lambda: copy_report(root)
+        command=lambda: copy_report(root, status_label)
     )
 
     file_menu.add_command(
@@ -289,7 +306,7 @@ def main():
 
     help_menu.add_command(
         label="About",
-        command=show_about
+        command=lambda: show_about(status_label)
     )
 
     root.bind("<Control-q>", lambda event: root.destroy())
