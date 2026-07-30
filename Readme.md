@@ -1,51 +1,29 @@
 # Operation Scout
 
-Operation Scout is a simple desktop application I built using Python and Tkinter. It displays basic information about the current computer and allows the information to be copied to the clipboard or exported as a text report.
+This executable file in written by me in Pyhton.
+It displays the information about your computer Hardware and Software.
+Just like the info page in Control Panel.
 
 ## Download
+To run this on your computer download the executable file available up in the repository ---> Operation Scout.exe
 
-If you don't want to install Python or the project dependencies, you can download the standalone Windows executable from the **Releases** page.
+## Screenshot
 
-1. Go to the **Releases** section of this repository.
-2. Download **OperationScout.exe** from the latest release.
-3. Double-click the executable to start the application.
+![Operation Scout](assets/screenshot.png)
+Above screenshot displays the features and working of the program.
 
-## Features
+## Buttons
 
-- View computer name
-- View current user
-- View operating system
-- View Python version
-- View processor information
-- View CPU usage
-- View installed memory
-- View storage usage
-- Refresh displayed information
-- Copy system information to the clipboard
-- Export a system report to a text file
-
-## Requirements
-
-- Python 3.14+
-- psutil
-
-Install the required package with:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Running the Application
-
-Run the application with:
-
-```bash
-python app.py
-```
+### 1. Refresh
+This button refresh(Updates) the information on the screen.
+### 2. Export
+This button exports the system stats and save them in a .txt file on the local storage.
+### 3. Copy
+This button copy the stat information to your clipboard.
 
 ## Project Structure
 
-```text
+```
 OperationScout/
 │
 ├── app.py
@@ -59,20 +37,4 @@ OperationScout/
     ├── report.py
     └── system.py
 ```
-
-## Screenshot
-
-![Operation Scout](assets/screenshot.png)
-
-## Future Improvements
-
-Some features I'd like to add in the future:
-
-- Display additional system information
-- Improve the user interface
-- Support exporting reports in different formats
-- Add more customization options
-
-## Notes
-
-This project was created as a practice project while learning Python, Tkinter, and working with system information using the `psutil` library.
+![](https://skillicons.dev/icons?i=py) 
